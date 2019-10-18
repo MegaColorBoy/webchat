@@ -13,11 +13,13 @@ Just trying to reverse engineer and have some fun coding it.
 - HTML and CSS
 
 ## TODO
+
 ### Backend 
-[ ] Create an API directory
-[ ] Create database schema for backend
-[ ] Write methods for `messages`
-[ ] Write methods for `notifications`
-[ ] Write methods for `friends`
-[ ] Write methods for `groups`
+
+- [ ] Create an API directory
+- [ ] Create database schema for backend
+- [ ] Write methods for `messages`
+- [ ] Write methods for `notifications`
+- [ ] Write methods for `friends`
+- [ ] Write methods for `groups`
 
