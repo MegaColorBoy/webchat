@@ -16,8 +16,8 @@ Just trying to reverse engineer and have some fun coding it.
 
 ### Backend 
 
-- [ ] Create an API directory
-- [ ] Create database schema for backend
+- [x] Create an API directory
+- [x] Create database schema for backend
 - [ ] Write methods for `messages`
 - [ ] Write methods for `notifications`
 - [ ] Write methods for `friends`
