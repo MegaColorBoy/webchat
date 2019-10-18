@@ -22,4 +22,3 @@ Just trying to reverse engineer and have some fun coding it.
 - [ ] Write methods for `notifications`
 - [ ] Write methods for `friends`
 - [ ] Write methods for `groups`
-
