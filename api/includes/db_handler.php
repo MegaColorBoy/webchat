@@ -1,5 +1,5 @@
 <?php
-class DB_HANDLER
+abstract class DB_HANDLER
 {
 	//Connection
 	private $conn;

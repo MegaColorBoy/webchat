@@ -20,13 +20,14 @@ Just trying to reverse engineer and have some fun coding it.
 - [x] Create database schema for backend
 - [ ] Write API methods for `users`
     - [ ] GET: User information
-    - [ ] POST: Create user
+    - [ ] GET: Fetch all users
     - [ ] UPDATE: Update user credentials
-    - [ ] DELETE: Remove user 
     - [ ] UPDATE: Update profile information
     - [ ] UPDATE: Set user visibility
+    - [ ] POST: Create user
     - [ ] POST: Login User
     - [ ] POST: Logout User
+    - [ ] DELETE: Remove user 
 - [ ] Write methods for `messages`
 - [ ] Write methods for `notifications`
 - [ ] Write methods for `friends`
