@@ -15,40 +15,104 @@ $app = new \Slim\App;
 
 //GET: Fetch all users
 $app->get('/', function(Request $request, Response $response, array $args){
-	echo "Get all users";
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "get_all_users"
+		);
+		$result = $db_handler->manage_users($obj);
+	}
+	catch(\Exception $ex) {
+		return $response->withJson(array("error" => $ex->getMessage(), 422));
+	}
+	return $result;
 });
 
 //GET: User information by ID
 $app->get('/{id}', function(Request $request, Response $response, array $args){
-	echo "Parameters missing.";
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "get_user",
+			"uid" => $request->getAttribute('id')
+		);
+		$result = $db_handler->manage_users($obj);
+	}
+	catch (\Exception $ex) {
+		return $response->withJson(array("error" => $ex->getMessage(), 422));
+	}
+	return $result;
 });
 
-//UPDATE: Update user credentials
-
 //UPDATE: Update profile information
+$app->put('/{id}', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "update_profile",
+			"uid" => $request->getAttribute('id'),
+			"data" => $request->getParsedBody()
+		);
+		$result = $db_handler->manage_users($obj);
+	}
+	catch(\Exception $ex) {
+		return $response->withJson(array("error" => $ex->getMessage(), 422));
+	}
+	return $result;
+});
 
 //UPDATE: Set user visibility
+$app->put('/{id}/visible/{val}', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "isVisible",
+			"uid" => $request->getAttribute('id'),
+			"isVisible" => $request->getAttribute('val')
+		);
+		$result = $db_handler->manage_users($obj);
+	}
+	catch(\Exception $ex) {
+		return $response->withJson(array("error" => $ex->getMessage(), 422));
+	}
+	return $result;
+});
 
 //POST: Create user
 $app->post('/add', function(Request $request, Response $response, array $args){
 	global $db_handler;
 	try {
-		$data = $request->getParsedBody();
-		$result = $db_handler->create_new_user($data);
-		return $result;
+		$obj = array(
+			"action" => "create_user",
+			"data" => $request->getParsedBody()
+		);
+		$result = $db_handler->manage_users($obj);
 	}
 	catch(\Exception $ex) {
 		return $response->withJson(array('error' => $ex->getMessage()),422);
 	}
-
+	return $result;
 });
 
 //POST: Login User
 
 //POST: Logout User
 
-//DELETE: Remove user 
-
+//DELETE: Remove user
+$app->delete('/{id}', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "delete_user",
+			"uid" => $request->getAttribute('id')
+		);
+		$result = $db_handler->manage_users($obj);
+	}
+	catch(\Exception $ex) {
+		return $response->withJson(array('error' => $ex->getMessage()),422);
+	}
+	return $result;
+});
 
 $app->run();
 ?>

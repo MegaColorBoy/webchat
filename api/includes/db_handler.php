@@ -99,7 +99,7 @@ abstract class DB_HANDLER
 	}
 
 	//Get Custom columns
-	function get_cust_cols($query)
+	function custom_query($query)
 	{
 		include_once('utility.php');
 		$utility_handler = new UTILITY();
@@ -126,56 +126,56 @@ abstract class DB_HANDLER
 	//HTTP Error messages
 	public function response_code($code, $result="")
 	{
-		$response['HTTP Status'] = $code;
+		$response['http_status'] = $code;
 
 		switch($code)
 		{
 			case 200:
-				$response['Message'] = "OK";
+				$response['message'] = "OK";
 				break;
 
 			case 201:
-				$response['Message'] = "Created";
+				$response['message'] = "Created";
 				break;
 
 			case 204:
-				$response['Message'] = "No Content";
+				$response['message'] = "No Content";
 				break;
 
 			case 304:
-				$response['Message'] = "Not Modified";
+				$response['message'] = "Not Modified";
 				break;
 
 			case 400:
-				$response['Message'] = "Bad Request";
+				$response['message'] = "Bad Request";
 				break;
 
 			case 401:
-				$response['Message'] = "Unauthorized";
+				$response['message'] = "Unauthorized";
 				break;
 
 			case 403:
-				$response['Message'] = "Forbidden";
+				$response['message'] = "Forbidden";
 				break;
 
 			case 404:
-				$response['Message'] = "Not Found";
+				$response['message'] = "Not Found";
 				break;
 
 			case 409:
-				$response['Message'] = "Conflict";
+				$response['message'] = "Conflict";
 				break;
 
 			case 410:
-				$response['Message'] = "Gone";
+				$response['message'] = "Gone";
 				break;
 
 			case 500:
-				$response['Message'] = "Internal Server Error";
+				$response['message'] = "Internal Server Error";
 				break;
 
 			case 503:
-				$response['Message'] = "Service Unavailable";
+				$response['message'] = "Service Unavailable";
 				break;
 
 			default:
@@ -184,7 +184,7 @@ abstract class DB_HANDLER
 		}
 
 		if($result != "") {
-			$response['Result'] = $result;
+			$response['result'] = $result;
 		}
 
 		return json_encode($response, JSON_PRETTY_PRINT);

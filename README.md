@@ -8,9 +8,8 @@ Just trying to reverse engineer and have some fun coding it.
 - PHP
 - Javascript
 - MySQL
-- Slim Framework (For REST API)
-- SASS
-- HTML and CSS
+- Slim Framework (for REST API)
+- HTML, CSS (SASS)
 
 ## TODO
 
@@ -18,17 +17,32 @@ Just trying to reverse engineer and have some fun coding it.
 
 - [x] Create an API directory
 - [x] Create database schema for backend
+    - [x] User
+    - [ ] Friend
+    - [ ] Friend Request
+    - [ ] Messages
+    - [ ] Groups
+    - [ ] Notifications
 - [ ] Write API methods for `users`
-    - [ ] GET: User information
-    - [ ] GET: Fetch all users
-    - [ ] UPDATE: Update user credentials
-    - [ ] UPDATE: Update profile information
-    - [ ] UPDATE: Set user visibility
-    - [ ] POST: Create user
+    - [x] GET: User information
+    - [x] GET: Fetch all users
+    - [x] UPDATE: Update user credentials
+    - [x] UPDATE: Update profile information
+    - [x] UPDATE: Set user visibility
+    - [x] POST: Create user
     - [ ] POST: Login User
     - [ ] POST: Logout User
-    - [ ] DELETE: Remove user 
+    - [x] DELETE: Remove user 
 - [ ] Write methods for `messages`
+    - [ ] GET: Fetch all messages between UserA and UserB
+    - [ ] POST: Send message from UserA to UserB
+    - [ ] DELETE: Delete message from UserA to UserB 
 - [ ] Write methods for `notifications`
 - [ ] Write methods for `friends`
+    - [ ] GET: Show friend requests by ID
+    - [ ] GET: Show friend list by ID  
+    - [ ] POST: Send friend request by ID
+    - [ ] POST: Add friend by ID
+    - [ ] DELETE: Remove friend request by ID
+    - [ ] DELETE: Remove friend by ID
 - [ ] Write methods for `groups`
