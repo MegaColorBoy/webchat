@@ -95,6 +95,20 @@ $app->post('/add', function(Request $request, Response $response, array $args){
 });
 
 //POST: Login User
+$app->post('/login', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "login",
+			"data" => $request->getParsedBody()
+		);
+		$result = $db_handler->manage_users($obj);
+	}
+	catch(\Exception $ex) {
+		return $response->withJson(array('error' => $ex->getMessage()),422);
+	}
+	return $result;
+});
 
 //POST: Logout User
 

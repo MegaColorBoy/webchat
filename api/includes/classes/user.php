@@ -1,23 +1,10 @@
 <?php
-// include_once('../db_handler.php');
-// include_once('../utility.php');
-
 class User extends DB_HANDLER {
 
 	private $conn;
 
 	function __construct($conn) {
 		parent::__construct($conn);
-	}
-
-	//User login session
-	public function login($obj) {
-		return false;
-	}
-
-	//User logout session
-	public function logout() {
-		return false;
 	}
 
 	public function manage_users($obj) {
@@ -42,10 +29,12 @@ class User extends DB_HANDLER {
 				break;
 
 			case "login":
+				$result = $this->user_login($obj);
 				break;
 
-			case "logout":
-				break;
+			// case "logout":
+			// 	$result = $this->user_logout($obj);
+			// 	break;
 
 			case "update_profile":
 				$result = $this->update_profile($obj['uid'], $obj['data']);
@@ -62,6 +51,41 @@ class User extends DB_HANDLER {
 
 		return $result;
 	}
+
+	//User login session
+	public function user_login($obj) {
+		extract($obj);
+		$data = $obj['data'];
+		extract($data);
+
+		//Check if the user exists
+		$is_exists = json_decode($this->is_user_exists($email), true);
+		$http_status_1 = $is_exists["http_status"];
+
+		//Check if the user credentials are correct
+		$is_valid = json_decode($this->check_credentials($data), true);
+		$http_status_2 = $is_valid['http_status'];
+
+		if($http_status_1 == 200) {
+			if($http_status_2 != 200) {
+				$rescode = $this->response_code(204);
+			} else {
+				$query = "SELECT * FROM users WHERE email = ? AND password = ?";
+				$params = array("ss", $email, $password);
+				$result = $this->preparedStatement("get", $query, $params);
+				$rescode = $this->response_code(200, $result);
+			}	
+		} else {
+			$rescode = $this->response_code(404);
+		}
+		
+		return $rescode;
+	}
+
+	//User logout
+	// public function user_logout($obj) {
+		
+	// }
 
 	//Create new user
 	public function create_user($obj) {
@@ -143,7 +167,19 @@ class User extends DB_HANDLER {
 
 	//Validate user credentials
 	private function check_credentials($obj) {
-		return false;
+		extract($obj);
+
+		$query = "SELECT uid FROM users WHERE email = ? AND password = ?";
+		$params = array("ss", $email, $password);
+		$result = $this->preparedStatement("get", $query, $params);
+
+		if($result) {
+			$rescode = $this->response_code(200);
+		} else {
+			$rescode = $this->response_code(204);
+		}
+
+		return $rescode;		
 	}
 
 	//Edit user information and status message

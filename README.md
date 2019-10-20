@@ -30,7 +30,7 @@ Just trying to reverse engineer and have some fun coding it.
     - [x] UPDATE: Update profile information
     - [x] UPDATE: Set user visibility
     - [x] POST: Create user
-    - [ ] POST: Login User
+    - [x] POST: Login User
     - [ ] POST: Logout User
     - [x] DELETE: Remove user 
 - [ ] Write methods for `messages`
