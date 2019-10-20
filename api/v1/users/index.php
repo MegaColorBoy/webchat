@@ -128,26 +128,26 @@ $app->delete('/{id}', function(Request $request, Response $response, array $args
 	return $result;
 });
 
+//Fetch friends of user
+//GET: /users/1/friends
+
+//Fetch friend requests of user
+//GET: /users/1/friend-requests
+
+//Search user
+//POST: /users/search
+
+//Add friend
+//POST: /users/1/friends/2
+
+//Delete friend
+//DELETE: /users/1/friends/2
+
+//Send friend request
+//POST: /users/1/friend-requests/2
+
+//Delete friend request
+//DELETE: /users/1/friend-requests/2
+
 $app->run();
 ?>
-
-Fetch friends of user
-GET: /users/1/friends
-
-Fetch friend requests of user
-GET: /users/1/friend-requests
-
-Search user
-POST: /users/search
-
-Add friend
-POST: /users/1/friends/2
-
-Delete friend
-DELETE: /users/1/friends/2
-
-Send friend request
-POST: /users/1/friend-requests/2
-
-Delete friend request
-DELETE: /users/1/friend-requests/2
