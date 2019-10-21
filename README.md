@@ -4,6 +4,9 @@ A web-based instant messenger similar to Facebook Messenger and Whatsapp.
 ## Why built this?
 Just trying to reverse engineer and have some fun coding it.
 
+## Architecture
+The main reason I'm building this application is to practice my skills on System Design and Architecture. The backend is an API service and it's made with the intention of separating the server-side and client-side applications.
+
 ## Technologies
 - PHP
 - Javascript
@@ -13,7 +16,7 @@ Just trying to reverse engineer and have some fun coding it.
 
 ## TODO
 
-### Backend 
+### Tasks for Backend
 
 - [x] Create an API directory
 - [x] Create database schema for backend
@@ -39,9 +42,9 @@ Just trying to reverse engineer and have some fun coding it.
     - [x] POST: Add friend by ID
     - [x] DELETE: Remove friend request by ID
     - [x] DELETE: Remove friend by ID
-- [ ] Write methods for `messages`
+- [ ] Write API methods for `messages`
     - [ ] GET: Fetch all messages between UserA and UserB
     - [ ] POST: Send message from UserA to UserB
     - [ ] DELETE: Delete message from UserA to UserB 
-- [ ] Write methods for `notifications`
-- [ ] Write methods for `groups`
+- [ ] Write API methods for `notifications`
+- [ ] Write API methods for `groups`
