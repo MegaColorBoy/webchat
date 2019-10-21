@@ -130,24 +130,113 @@ $app->delete('/{id}', function(Request $request, Response $response, array $args
 
 //Fetch friends of user
 //GET: /users/1/friends
+$app->get('/{uid}/friends', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "fetch_friends",
+			"uid" => $request->getAttribute('uid')
+		);
+
+		$result = $db_handler->manage_friends($obj);
+	} 
+	catch (\Exception $ex) {
+		return $response->withJson(array('error' => $ex->getMessage(), 422));
+	}
+	return $result;
+});
 
 //Fetch friend requests of user
 //GET: /users/1/friend-requests
+$app->get('/{uid}/friend-requests', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "fetch_friend_requests",
+			"uid" => $request->getAttribute('uid')
+		);
+		$result = $db_handler->manage_friends($obj);
+	} 
+	catch (\Exception $ex) {
+		return $response->withJson(array('error' => $ex->getMessage(), 422));
+	}
+	return $result;
+});
 
 //Search user
 //POST: /users/search
 
 //Add friend
 //POST: /users/1/friends/2
+$app->post('/{uid_a}/friends/{uid_b}', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "add_friend",
+			"uid_a" => $request->getAttribute('uid_a'),
+			"uid_b" => $request->getAttribute('uid_b')
+		);
+		$result = $db_handler->manage_friends($obj);
+	} 
+	catch (\Exception $ex) {
+		return $response->withJson(array('error' => $ex->getMessage(), 422));
+	}
+	return $result;
+});
 
 //Delete friend
 //DELETE: /users/1/friends/2
+$app->delete('/{uid_a}/friends/{uid_b}', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "remove_friend",
+			"uid_a" => $request->getAttribute('uid_a'),
+			"uid_b" => $request->getAttribute('uid_b')
+		);
+		$result = $db_handler->manage_friends($obj);
+	} 
+	catch (\Exception $ex) {
+		return $response->withJson(array('error' => $ex->getMessage(), 422));
+	}
+	return $result;
+});
 
 //Send friend request
 //POST: /users/1/friend-requests/2
+$app->post('/{uid_a}/friend-requests/{uid_b}', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "send_friend_request",
+			"uid_a" => $request->getAttribute('uid_a'),
+			"uid_b" => $request->getAttribute('uid_b')
+		);
+		$result = $db_handler->manage_friends($obj);
+	} 
+	catch (\Exception $ex) {
+		return $response->withJson(array('error' => $ex->getMessage(), 422));
+	}
+	return $result;
+});
 
 //Delete friend request
 //DELETE: /users/1/friend-requests/2
+$app->delete('/{uid_a}/friend-requests/{uid_b}', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "remove_friend_request",
+			"uid_a" => $request->getAttribute('uid_a'),
+			"uid_b" => $request->getAttribute('uid_b')
+		);
+		$result = $db_handler->manage_friends($obj);
+	} 
+	catch (\Exception $ex) {
+		return $response->withJson(array('error' => $ex->getMessage(), 422));
+	}
+	return $result;
+});
 
 $app->run();
 ?>

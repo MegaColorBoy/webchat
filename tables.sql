@@ -19,3 +19,12 @@ CREATE TABLE IF NOT EXISTS friends
 	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(fr_id)
 );
+
+CREATE TABLE IF NOT EXISTS friend_requests
+(
+	fr_req_id int NOT NULL auto_increment,
+	uid_a int unsigned NULL,
+	uid_b int unsigned NULL,
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(fr_req_id)
+);

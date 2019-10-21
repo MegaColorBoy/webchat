@@ -18,12 +18,12 @@ Just trying to reverse engineer and have some fun coding it.
 - [x] Create an API directory
 - [x] Create database schema for backend
     - [x] User
-    - [ ] Friend
-    - [ ] Friend Request
+    - [x] Friend
+    - [x] Friend Request
     - [ ] Messages
     - [ ] Groups
     - [ ] Notifications
-- [ ] Write API methods for `users`
+- [x] Write API methods for `users`
     - [x] GET: User information
     - [x] GET: Fetch all users
     - [x] UPDATE: Update user credentials
@@ -31,14 +31,14 @@ Just trying to reverse engineer and have some fun coding it.
     - [x] UPDATE: Set user visibility
     - [x] POST: Create user
     - [x] POST: Login User
-    - [ ] POST: Logout User
+    - [ ] POST: Logout User (This can be done later)
     - [x] DELETE: Remove user 
-    - [ ] GET: Show friend requests by ID
-    - [ ] GET: Show friend list by ID  
-    - [ ] POST: Send friend request by ID
-    - [ ] POST: Add friend by ID
-    - [ ] DELETE: Remove friend request by ID
-    - [ ] DELETE: Remove friend by ID
+    - [x] GET: Show friend requests by ID
+    - [x] GET: Show friend list by ID  
+    - [x] POST: Send friend request by ID
+    - [x] POST: Add friend by ID
+    - [x] DELETE: Remove friend request by ID
+    - [x] DELETE: Remove friend by ID
 - [ ] Write methods for `messages`
     - [ ] GET: Fetch all messages between UserA and UserB
     - [ ] POST: Send message from UserA to UserB
