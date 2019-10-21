@@ -5,7 +5,7 @@ A web-based instant messenger similar to Facebook Messenger and Whatsapp.
 Just trying to reverse engineer and have some fun coding it.
 
 ## Architecture
-The main reason I'm building this application is to practice my skills on System Design and Architecture. The backend is an API service and it's made with the intention of separating the server-side and client-side applications.
+The main reason I'm building this application is to practice my skills on System Design and Architecture. The backend is an API service and it's made with the intention of separating the logic of server-side and client-side applications.
 
 ## Technologies
 - PHP
@@ -15,6 +15,7 @@ The main reason I'm building this application is to practice my skills on System
 - HTML, CSS (SASS)
 
 ## TODO
+This list is made to keep track of my current progress with this project.
 
 ### Tasks for Backend
 
