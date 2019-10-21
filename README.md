@@ -35,6 +35,7 @@ The main reason I'm building this application is to practice my skills on System
     - [x] POST: Create user
     - [x] POST: Login User
     - [ ] POST: Logout User (This can be done later)
+    - [ ] GET: Search User (This can be done later)
     - [x] DELETE: Remove user 
     - [x] GET: Show friend requests by ID
     - [x] GET: Show friend list by ID  
