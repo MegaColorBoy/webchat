@@ -24,7 +24,7 @@ This list is made to keep track of my current progress with this project.
     - [x] User
     - [x] Friend
     - [x] Friend Request
-    - [ ] Messages
+    - [x] Messages
     - [ ] Groups
     - [ ] Notifications
 - [x] Write API methods for `users`
@@ -44,9 +44,9 @@ This list is made to keep track of my current progress with this project.
     - [x] POST: Add friend by ID
     - [x] DELETE: Remove friend request by ID
     - [x] DELETE: Remove friend by ID
-- [ ] Write API methods for `messages`
-    - [ ] GET: Fetch all messages between UserA and UserB
-    - [ ] POST: Send message from UserA to UserB
-    - [ ] DELETE: Delete message from UserA to UserB 
+- [x] Write API methods for `messages`
+    - [x] GET: Fetch all messages between UserA and UserB
+    - [x] POST: Send message from UserA to UserB
+    - [x] DELETE: Delete message from UserA to UserB 
 - [ ] Write API methods for `notifications`
 - [ ] Write API methods for `groups`
