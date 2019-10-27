@@ -90,13 +90,103 @@ class User extends DB_HANDLER {
 		return $result;
 	}
 
+	//Wrapper function for message related functionality
+	public function manage_messages($obj) {
+		header('Content-Type: application/json');
+		$action = $obj['action'];
+
+		switch($action) {
+			case "send_message":
+				$result = $this->send_message($obj);				
+				break;
+
+			case "fetch_messages":
+				$result = $this->fetch_messages($obj['uid_a'], $obj['uid_b']);
+				break;
+
+			case "delete_message":
+				$result = $this->delete_message($obj['uid_a'], $obj['uid_b'], $obj['msg_id']);
+				break;
+
+			case "clear_chat":
+				$result = $this->delete_message($obj['uid_a'], $obj['uid_b']);
+				break;
+
+			default:
+				break;
+		}
+
+		return $result;
+	}
+
+	//Delete message
+	public function delete_message($uid_a, $uid_b, $msg_id=0) {
+		if($msg_id == 0) {
+			$query = "DELETE FROM private_messages WHERE (uid_a = ? AND uid_b = ?) OR (uid_b = ? AND uid_a = ?)";
+			$params = array("iiii", $uid_a, $uid_b, $uid_a, $uid_b);
+		} else {
+			$query = "DELETE FROM private_messages WHERE ((uid_a = ? AND uid_b = ?) OR (uid_b = ? AND uid_a = ?)) AND msg_id = ?";
+			$params = array("iiiii", $uid_a, $uid_b, $uid_a, $uid_b, $msg_id);
+		}
+
+		$result = $this->preparedStatement("edit/delete", $query, $params);
+
+		if($result) {
+			$rescode = $this->response_code(200);
+		}
+		else {
+			$rescode = $this->response_code(404);
+		}
+
+		return $rescode;
+	}
+
+	//Send message
+	public function send_message($obj) {
+		extract($obj);
+
+		$query = "INSERT INTO private_messages (uid_a, uid_b, message) VALUES (?,?,?)";
+		$params = array("iis", $uid_a, $uid_b, $message);
+		$result = $this->preparedStatement("add", $query, $params);
+
+		if($result) {
+			$rescode = $this->response_code(201);
+		}
+		else {
+			$rescode = $this->response_code(400);
+		}
+
+		return $rescode;
+	}
+
+	//Fetch messages
+	public function fetch_messages($uid_a, $uid_b) {
+		$query = "SELECT * FROM private_messages WHERE (uid_a = ? AND uid_b = ?) OR (uid_b = ? AND uid_a = ?) ORDER BY created_at ASC";
+		$params = array("iiii", $uid_a, $uid_b, $uid_a, $uid_b);
+		$result = $this->preparedStatement("get", $query, $params);
+		
+		if($result) {
+			$rescode = $this->response_code(200, $result);
+		}
+		else {
+			$rescode = $this->response_code(404);
+		}
+
+		return $rescode;
+	}
+
 	//Add friend
 	public function add_friend($uid_a, $uid_b) {
 		//Check if user a is friends with user b or vice-versa
 		$is_friend = json_decode($this->check_if_friends($uid_a, $uid_b), true)['http_status'];
 		$is_request_sent = json_decode($this->check_friend_request_status($uid_a, $uid_b), true)['http_status'];
 
-		if($is_friend != 200 && $is_request_sent == 200) {
+		//Check if friend request is not sent
+		if($is_request_sent != 200) {
+			$rescode = $this->response_code(204);
+		} else if($is_friend == 200) { //Check if they are friends
+			$rescode = $this->response_code(304);
+		} else {
 			$query = "INSERT INTO friends (uid_a, uid_b) VALUES (?,?)";
 			$params = array("ii", $uid_a, $uid_b);
 			$result = $this->preparedStatement("add", $query, $params);
@@ -108,9 +198,6 @@ class User extends DB_HANDLER {
 			} else {
 				$rescode = $this->response_code(400);
 			}
-
-		} else {
-			$rescode = $this->response_code(304);
 		}
 
 		return $rescode;
@@ -231,7 +318,7 @@ class User extends DB_HANDLER {
 		if($result) {
 			$rescode = $this->response_code(200);
 		} else {
-			$rescode = $this->response_code(304);
+			$rescode = $this->response_code(404);
 		}
 
 		return $rescode;
@@ -246,7 +333,7 @@ class User extends DB_HANDLER {
 		if($result) {
 			$rescode = $this->response_code(200);
 		} else {
-			$rescode = $this->response_code(304);
+			$rescode = $this->response_code(404);
 		}
 
 		return $rescode;
@@ -418,9 +505,14 @@ class User extends DB_HANDLER {
 		//Check if friend request has been sent
 		$is_request_sent = json_decode($this->check_friend_request_status($uid_a, $uid_b), true)['http_status'];
 
+		//Check if user a is friends with user b or vice-versa
+		$is_friend = json_decode($this->check_if_friends($uid_a, $uid_b), true)['http_status'];
+
 		//If a request is present, then display a conflict
 		if($is_request_sent == 200) {
 			$rescode = $this->response_code(409);
+		} else if ($is_friend == 200) { // Check if they are friends
+			$rescode = $this->response_code(304);
 		} else { // Otherwise, send request
 			$query = "INSERT INTO friend_requests (uid_a, uid_b) VALUES (?,?)";
 			$params = array("ii", $uid_a, $uid_b);

@@ -147,7 +147,6 @@ $app->get('/{uid}/friends', function(Request $request, Response $response, array
 });
 
 //Fetch friend requests of user
-//GET: /users/1/friend-requests
 $app->get('/{uid}/friend-requests', function(Request $request, Response $response, array $args){
 	global $db_handler;
 	try {
@@ -167,8 +166,7 @@ $app->get('/{uid}/friend-requests', function(Request $request, Response $respons
 //POST: /users/search
 
 //Add friend
-//POST: /users/1/friends/2
-$app->post('/{uid_a}/friends/{uid_b}', function(Request $request, Response $response, array $args){
+$app->post('/{uid_a}/{uid_b}/friends', function(Request $request, Response $response, array $args){
 	global $db_handler;
 	try {
 		$obj = array(
@@ -185,8 +183,7 @@ $app->post('/{uid_a}/friends/{uid_b}', function(Request $request, Response $resp
 });
 
 //Delete friend
-//DELETE: /users/1/friends/2
-$app->delete('/{uid_a}/friends/{uid_b}', function(Request $request, Response $response, array $args){
+$app->delete('/{uid_a}/{uid_b}/friends', function(Request $request, Response $response, array $args){
 	global $db_handler;
 	try {
 		$obj = array(
@@ -203,8 +200,7 @@ $app->delete('/{uid_a}/friends/{uid_b}', function(Request $request, Response $re
 });
 
 //Send friend request
-//POST: /users/1/friend-requests/2
-$app->post('/{uid_a}/friend-requests/{uid_b}', function(Request $request, Response $response, array $args){
+$app->post('/{uid_a}/{uid_b}/friend-requests', function(Request $request, Response $response, array $args){
 	global $db_handler;
 	try {
 		$obj = array(
@@ -221,8 +217,7 @@ $app->post('/{uid_a}/friend-requests/{uid_b}', function(Request $request, Respon
 });
 
 //Delete friend request
-//DELETE: /users/1/friend-requests/2
-$app->delete('/{uid_a}/friend-requests/{uid_b}', function(Request $request, Response $response, array $args){
+$app->delete('/{uid_a}/{uid_b}/friend-requests', function(Request $request, Response $response, array $args){
 	global $db_handler;
 	try {
 		$obj = array(
@@ -232,6 +227,77 @@ $app->delete('/{uid_a}/friend-requests/{uid_b}', function(Request $request, Resp
 		);
 		$result = $db_handler->manage_friends($obj);
 	} 
+	catch (\Exception $ex) {
+		return $response->withJson(array('error' => $ex->getMessage(), 422));
+	}
+	return $result;
+});
+
+//GET: /users/{uid_a}/{uid_b}/messages
+$app->get('/{uid_a}/{uid_b}/messages', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "fetch_messages",
+			"uid_a" => $request->getAttribute('uid_a'),
+			"uid_b" => $request->getAttribute('uid_b')
+		);
+		$result = $db_handler->manage_messages($obj);
+	}
+	catch (\Exception $ex) {
+		return $response->withJson(array('error' => $ex->getMessage(), 422));
+	}
+	return $result;
+});
+
+//POST: /users/{uid_a}/{uid_b}/messages
+$app->post('/{uid_a}/{uid_b}/messages', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "send_message",
+			"uid_a" => $request->getAttribute('uid_a'),
+			"uid_b" => $request->getAttribute('uid_b'),
+			"message" => $request->getParsedBody()['message']
+		);
+		$result = $db_handler->manage_messages($obj);
+	}
+	catch (\Exception $ex) {
+		return $response->withJson(array('error' => $ex->getMessage(), 422));
+	}
+	return $result;
+});
+
+//DELETE: /users/{uid_a}/{uid_b}/messages
+$app->delete('/{uid_a}/{uid_b}/messages', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "clear_chat",
+			"uid_a" => $request->getAttribute('uid_a'),
+			"uid_b" => $request->getAttribute('uid_b')
+		);
+		$result = $db_handler->manage_messages($obj);
+	}
+	catch (\Exception $ex) {
+		return $response->withJson(array('error' => $ex->getMessage(), 422));
+	}
+	return $result;
+});
+
+
+//DELETE: /users/{uid_a}/{uid_b}/messages/{msg_id}
+$app->delete('/{uid_a}/{uid_b}/messages/{msg_id}', function(Request $request, Response $response, array $args){
+	global $db_handler;
+	try {
+		$obj = array(
+			"action" => "delete_message",
+			"uid_a" => $request->getAttribute('uid_a'),
+			"uid_b" => $request->getAttribute('uid_b'),
+			"msg_id" => $request->getAttribute('msg_id')
+		);
+		$result = $db_handler->manage_messages($obj);
+	}
 	catch (\Exception $ex) {
 		return $response->withJson(array('error' => $ex->getMessage(), 422));
 	}

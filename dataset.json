@@ -4,3 +4,23 @@
 	"password": "password",
 	"email": "email@website.com"
 }
+
+//Messages
+{
+	"uid_a": 1,
+	"uid_b": 3,
+	"message": "Hello there"
+}
+
+{
+	"uid_a": 1,
+	"uid_b": 3,
+	"message": "How are you?"
+}
+
+{
+	"uid_a": 3,
+	"uid_b": 1,
+	"message": "I'm good. How are you doing?"
+}
+

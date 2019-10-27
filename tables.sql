@@ -28,3 +28,13 @@ CREATE TABLE IF NOT EXISTS friend_requests
 	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(fr_req_id)
 );
+
+CREATE TABLE IF NOT EXISTS private_messages
+(
+	msg_id int NOT NULL auto_increment,
+	uid_a int unsigned NULL,
+	uid_b int unsigned NULL,
+	message TEXT NOT NULL,
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(msg_id)
+);
