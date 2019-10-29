@@ -18,9 +18,9 @@ The main reason I'm building this application is to practice my skills on System
 This list is made to keep track of my current progress with this project.
 
 ### Tasks for Component Design
-- [ ] Chat Interface
+- [x] Chat Interface
     - [ ] Sidebar
-    - [ ] Chat bubble
+    - [x] Chat bubble
     - [ ] Message box
     - [ ] Search box
     - [ ] Friend List
