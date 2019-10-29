@@ -17,6 +17,15 @@ The main reason I'm building this application is to practice my skills on System
 ## TODO
 This list is made to keep track of my current progress with this project.
 
+### Tasks for Component Design
+- [ ] Chat Interface
+    - [ ] Sidebar
+    - [ ] Chat bubble
+    - [ ] Message box
+    - [ ] Search box
+    - [ ] Friend List
+    - [ ] Status bar
+
 ### Tasks for Backend
 
 - [x] Create an API directory
