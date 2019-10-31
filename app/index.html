@@ -8,18 +8,93 @@
 <body>
 	<main class="app">
 		<div class="menu-bar"></div>
-		<div class="friend-list"></div>
+		<div class="friends-col">
+			<div class="search-wrapper"></div>
+			<div class="friends-list">
+				
+				<div class="friend-block">
+					<div class="friend-details">
+						<div class="prof-img">
+							<span class="friend-status online"></span>
+						</div>
+						<div class="name-status">
+							<p>Barry Allen</p>
+							<p>I'm good. Thanks for asking :)</p>
+						</div>
+					</div>
+					<div class="timestamp">
+						<p>11:03AM</p>
+					</div>
+				</div>
+
+				<div class="friend-block selected">
+					<div class="friend-details">
+						<div class="prof-img">
+							<span class="friend-status online"></span>
+						</div>
+						<div class="name-status">
+							<p>Jack Ryan</p>
+							<p>I'm good. Thanks for asking :)</p>
+						</div>
+					</div>
+					<div class="timestamp">
+						<p>11:03AM</p>
+					</div>
+				</div>
+
+				<div class="friend-block">
+					<div class="friend-details">
+						<div class="prof-img">
+							<span class="friend-status online"></span>
+						</div>
+						<div class="name-status">
+							<p>Oliver Queen</p>
+							<p>I'm good. Thanks for asking :)</p>
+						</div>
+					</div>
+					<div class="timestamp">
+						<p>11:03AM</p>
+					</div>
+				</div>
+
+				<div class="friend-block">
+					<div class="friend-details">
+						<div class="prof-img">
+							<span class="friend-status online"></span>
+						</div>
+						<div class="name-status">
+							<p>Jesse Pinkman</p>
+							<p>I'm good. Thanks for asking :)</p>
+						</div>
+					</div>
+					<div class="timestamp">
+						<p>11:03AM</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
 		<div class="chat-screen">
 			<div class="status-bar">
-	
+				<div class="friend-details">
+					<div class="prof-img"></div>
+					<div class="name-status">
+						<p>Jack Ryan</p>
+						<p>Online</p>
+					</div>
+				</div>
+				<div class="options">
+					
+				</div>
 			</div>
 			<div class="message-list">
-				<div class="chat-block other">
+				<div class="chat-block friend">
 					<div class="message-wrapper">
 						<p class="message">Hello there!</p>
 					</div>
 				</div>
-				<div class="chat-block other">
+				<div class="chat-block friend">
 					<div class="message-wrapper">
 						<p class="message">How are you?</p>
 						<div class="timestamp">
@@ -45,7 +120,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="chat-block other">
+				<div class="chat-block friend">
 					<div class="message-wrapper">
 						<p class="message">I'm good. Thanks for asking :)</p>
 						<div class="timestamp">
@@ -55,7 +130,18 @@
 				</div>
 			</div>
 			<div class="message-box">
-				<input type="text" placeholder="Type your message..."/>
+				<div class="col">
+					<button><i class="fas fa-paperclip"></i></button>
+					<button><i class="fas fa-laugh"></i></button>
+				</div>
+				<div class="col">
+					<textarea placeholder="Type your message..."></textarea>
+				</div>
+				<div class="col">
+					<button class="send-btn">
+						<i class="fas fa-paper-plane"></i>
+					</button>
+				</div>
 			</div>
 		</div>
 	</main>

@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 body {
 	font-family: -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen",
@@ -5,36 +9,139 @@ body {
     "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
+textarea {
+	font-family: -apple-system, BlinkMacSystemFont,
+	"Segoe UI", "Roboto", "Oxygen",
+	"Ubuntu", "Cantarell", "Fira Sans",
+	"Droid Sans", "Helvetica Neue", sans-serif;
+}
+
 .app {
 	width: 1024px;
 	height: 768px;
-	background-color: black;
+	background-color: #091e42;
 	margin: 50px auto;
 	display: grid;
 	grid-template-columns: 0.1fr 0.3fr 0.6fr;
 }
 
 .menu-bar {
-	background-color: #444;
+	background-color: #091e42;
 }
 
-.friend-list {
-	background-color: #333;
+.friends-col {
+	background-color: #fafbfc;
+	display: grid;
+	grid-template-rows: 70px 1fr;
+}
+
+.friends-list {
+	display: grid;
+	grid-template-rows: repeat(auto-fill, minmax(60px, 1fr));
+	background-color: #fafafa;
 }
 
 .chat-screen {
 	display: grid;
-	background-color: #FAFAFA;
+	grid-template-rows: 70px 1fr 50px;
+	background-color: #f4f5f7;
 }
 
 .status-bar {
-	height: 60px;
-	background-color: #222;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	background-color: #253858;
+	padding-left: 20px;
+}
+
+.friend-details {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	.name-status {
+		p {
+			color: #f9f7f7;
+			margin: 0;
+
+			&:first-child {
+				font-weight: 600;
+				font-size: 13px;
+			}
+
+			&:last-child {
+				font-weight: 300;
+				font-size: 11px;
+			}
+		}
+	}
+
+	.prof-img {
+		width: 40px;
+		height: 40px;
+		background-color: #f9f7f7;
+		border-radius: 999em;	
+		margin-right: 10px;
+	}
 }
 
 .message-list {
 	padding: 20px;
 	max-height: 640px;
+}
+
+.message-box {
+	display: grid;
+	grid-template-columns: 80px 1fr 50px;
+	height: 100%;
+
+	.col {
+		background-color: #dfe1e6;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	
+		&:first-child {
+			display: grid;
+			grid-template-columns: repeat(2,1fr);
+			justify-content: space-evenly;
+		}
+
+		&:last-child {
+			justify-content: center;
+		}
+	}
+
+	button {
+		color: #172b4d;
+		border: none;
+		background-color: transparent;
+		padding: 0;
+		font-size: 17px;
+		margin: 0;
+		height: 100%;
+		width: 100%;
+		cursor: pointer;
+		outline: none;
+		transition: 0.2s all ease;
+
+		&:hover {
+			color: #ff5a5f;
+		}
+	}
+
+	textarea {
+		height: 100%;
+		width: -webkit-fill-available;
+		background-color: transparent;
+		border: none;
+		outline: none;
+		font-size: 13px;
+		padding: 15px 0 0 15px;
+		margin: 0;
+		resize: none;
+	}
 }
 
 .message-wrapper {
@@ -46,9 +153,9 @@ body {
 	.message {
 		min-height: 20px;
 		min-width: 20px;
-		padding: 5px 10px;
-		background-color: #111;
-		color: white;
+		padding: 10px;
+		background-color: #172b4d;
+		color: #f9f7f7;
 	}
 }
 
@@ -60,7 +167,7 @@ body {
 }
 
 .chat-block {
-	// border: 1px solid #111;
+	// border: 1px solid #1c479d;
 	min-height: 20px;
 	margin: 5px 0px;
 	display: flex;
@@ -69,7 +176,7 @@ body {
 		margin-bottom: 0px; 
 	}
 
-	&.other {
+	&.friend {
 		justify-content: flex-start;
 		.message-wrapper {
 			.message {
@@ -82,11 +189,54 @@ body {
 		justify-content: flex-end;
 		.message-wrapper {
 			.message {
+				background-color: #344563;
 				border-radius: 10px 10px 0px 10px;
 			}
 			.timestamp {
 				text-align: right;
 			}
 		}
+	}
+}
+
+.friend-block {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: end;
+	background-color: #f6f7f8;
+	padding: 15px;
+
+	&.selected {
+		background-color: #ebecf0;
+	}
+
+	.name-status {
+		p {
+			color: #172b4d;
+		}
+	}
+
+	.prof-img {
+		position: relative;
+	}
+
+	.friend-status {
+		width: 10px;
+		height: 10px;
+		display: block;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		border-radius: 999em;
+
+		&.online {
+			background-color: #006644;
+		}
+	}
+
+	.timestamp {
+		font-size: 11px;
+		color: #c1c7d0;
 	}
 }
